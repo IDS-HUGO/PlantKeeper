@@ -1,0 +1,45 @@
+<h2>Lista de Usuarios</h2>
+
+<h3>Añadir Usuario</h3>
+<form (ngSubmit)="saveUser()">
+  <div>
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="newUser.nombre" name="nombre" required>
+  </div>
+  <div>
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="newUser.email" name="email" required>
+  </div>
+  <div>
+    <label>Contraseña:</label>
+    <input type="password" [(ngModel)]="newUser.contrasena" name="contrasena" required>
+  </div>
+  <button type="submit">Guardar</button>
+</form>
+
+<div *ngIf="users.length > 0; else noUsers">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button (click)="selectUser(user.id)">Editar</button>
+          <button (click)="deleteUser(user.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-user-detail *ngIf="selectedUserId" [userId]="selectedUserId"></app-user-detail>
+</div>
+
+<ng-template #noUsers>
+  <p>No hay usuarios registrados.</p>
+</ng-template>
