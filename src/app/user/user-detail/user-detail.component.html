@@ -1,0 +1,16 @@
+<h2>{{ userId ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+<form (ngSubmit)="saveUser()">
+  <div>
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="user.nombre" name="nombre" required>
+  </div>
+  <div>
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="user.email" name="email" required>
+  </div>
+  <div>
+    <label>Contraseña:</label>
+    <input type="password" [(ngModel)]="user.contrasena" name="contrasena" required>
+  </div>
+  <button type="submit">{{ userId ? 'Actualizar' : 'Guardar' }}</button>
+</form>
